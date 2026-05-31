@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Админка — Стальной Стиль</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23c5a059'/><text x='16' y='24' font-size='22' text-anchor='middle' fill='white' font-weight='bold'>A</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.admin-wrap{max-width:1200px;margin:0 auto;padding:40px 5%}
+.login-box{max-width:360px;margin:80px auto;background:white;padding:40px;border-radius:10px;border:1px solid var(--border)}
+.login-box h1{font-family:var(--font-display);font-size:28px;margin-bottom:8px}
+.login-box p{color:var(--muted);font-size:13px;margin-bottom:24px}
+.login-box input{width:100%;padding:12px 0;border:none;border-bottom:1.5px solid var(--border);font-size:14px;font-family:var(--font-body);outline:none;margin-bottom:20px;color:var(--dark)}
+.login-box input:focus{border-color:var(--dark)}
+.login-box .btn{width:100%}
+.admin-header{display:flex;justify-content:space-between;align-items:center;padding:20px 5% 0;flex-wrap:wrap;gap:12px}
+.admin-header h1{font-family:var(--font-display);font-size:28px}
+.admin-header span{font-size:12px;color:var(--muted)}
+.admin-table{width:100%;border-collapse:collapse;background:white;border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+.admin-table th{background:var(--dark);color:white;padding:12px 14px;font-family:var(--font-heading);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;text-align:left}
+.admin-table td{padding:12px 14px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text)}
+.admin-table tr:hover td{background:var(--bg)}
+.admin-table .product-tag{display:inline-block;background:var(--bg-alt);padding:2px 10px;border-radius:40px;font-size:10px;font-weight:600;color:var(--muted)}
+.admin-empty{text-align:center;padding:60px;color:var(--muted);font-size:15px}
+.badge{display:inline-flex;align-items:center;gap:4px;background:rgba(197,160,89,0.12);color:#c5a059;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+@media(max-width:768px){.admin-table{font-size:12px}.admin-table th,.admin-table td{padding:8px 10px;font-size:11px}.admin-table .hide-mob{display:none}}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="loginView">
+    <div class="login-box">
+      <h1>Админ-панель</h1>
+      <p>Введите пароль для просмотра заявок</p>
+      <input type="password" id="passInput" placeholder="Пароль" onkeydown="if(event.key==='Enter')login()">
+      <button class="btn btn-primary btn-block" onclick="login()">Войти</button>
+      <p id="loginError" style="color:#e74c3c;font-size:12px;margin-top:12px;display:none"></p>
+    </div>
+  </div>
+
+  <div id="adminView" style="display:none">
+    <div class="admin-header">
+      <div><h1>Заявки</h1><span id="msgCount"></span></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button class="btn btn-sm btn-outline" onclick="location.href='/'">На сайт</button>
+        <button class="btn btn-sm btn-primary" onclick="logout()">Выйти</button>
+      </div>
+    </div>
+    <div class="admin-wrap">
+      <div id="messagesContainer"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function login() {
+  var pass = document.getElementById('passInput').value;
+  var err = document.getElementById('loginError');
+  if (!pass) { err.textContent = 'Введите пароль'; err.style.display = 'block'; return; }
+  try {
+    var r = await fetch('/api/login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({password: pass}) });
+    if (r.ok) {
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('adminView').style.display = 'block';
+      loadMessages();
+    } else {
+      err.textContent = 'Неверный пароль';
+      err.style.display = 'block';
+    }
+  } catch(e) { err.textContent = 'Ошибка соединения'; err.style.display = 'block'; }
+}
+
+async function logout() {
+  await fetch('/api/logout', { method:'POST' });
+  document.getElementById('loginView').style.display = 'block';
+  document.getElementById('adminView').style.display = 'none';
+  document.getElementById('passInput').value = '';
+}
+
+async function loadMessages() {
+  var container = document.getElementById('messagesContainer');
+  var count = document.getElementById('msgCount');
+  try {
+    var r = await fetch('/api/messages');
+    if (!r.ok) { container.innerHTML = '<div class="admin-empty">Сессия истекла. <a href="#" onclick="logout();return false" style="color:var(--dark);text-decoration:underline">Войти снова</a></div>'; return; }
+    var msgs = await r.json();
+    count.textContent = 'Всего: ' + msgs.length;
+    if (msgs.length === 0) { container.innerHTML = '<div class="admin-empty">Пока нет заявок</div>'; return; }
+    var html = '<table class="admin-table"><thead><tr><th>Дата</th><th>Имя</th><th>Телефон</th><th class="hide-mob">Email</th><th class="hide-mob">Сообщение</th><th>Товар</th></tr></thead><tbody>';
+    msgs.slice().reverse().forEach(function(m) {
+      var prod = m.product && m.product !== '-' ? '<span class="badge">' + m.product + '</span>' : '<span style="color:#bbb;font-size:11px">—</span>';
+      html += '<tr><td style="white-space:nowrap;font-size:11px;color:var(--muted)">' + (m.date||'').slice(0,16).replace('T',' ') + '</td>'
+        + '<td><strong>' + m.name + '</strong></td>'
+        + '<td><a href="tel:' + m.phone.replace(/[^+\d]/g,'') + '" style="color:var(--dark);text-decoration:none;font-weight:500">' + m.phone + '</a></td>'
+        + '<td class="hide-mob">' + m.email + '</td>'
+        + '<td class="hide-mob" style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + (m.message||'-') + '</td>'
+        + '<td>' + prod + '</td></tr>';
+    });
+    html += '</tbody></table>';
+    container.innerHTML = html;
+  } catch(e) { container.innerHTML = '<div class="admin-empty">Ошибка загрузки</div>'; }
+}
+
+// Check session on load
+fetch('/api/messages').then(function(r) {
+  if (r.ok) {
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('adminView').style.display = 'block';
+    loadMessages();
+  }
+}).catch(function(){});
+</script>
+</body>
+</html>

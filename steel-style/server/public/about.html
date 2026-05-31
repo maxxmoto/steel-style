@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О компании — Стальной Стиль</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15L9 3L15 15" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10.5H12.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+    STEEL STYLE
+  </a>
+  <div class="nav-links">
+    <a href="/catalog">Каталог</a>
+    <a href="/about" class="active">О компании</a>
+    <a href="/painting">Покраска</a>
+    <a href="/dealers">Дилерам</a>
+    <a href="/contacts">Контакты</a>
+  </div>
+  <a href="/contacts" class="nav-cta">Связаться</a>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileClose">&times;</button>
+  <a href="/catalog">Каталог</a>
+  <a href="/about">О компании</a>
+  <a href="/painting">Покраска</a>
+  <a href="/dealers">Дилерам</a>
+  <a href="/contacts">Контакты</a>
+  <a href="/contacts" class="mobile-cta">Связаться</a>
+</div>
+
+<div class="page-header">
+  <div class="container">
+    <div class="breadcrumbs"><a href="/">Главная</a><span class="sep">/</span><span>О компании</span></div>
+    <h1>О <em>компании</em></h1>
+  </div>
+</div>
+
+<div class="page-layout">
+  <aside class="side-menu" id="subMenu">
+    <a href="#" data-sub="about" class="active">О нас</a>
+    <a href="#" data-sub="production">Производство</a>
+    <a href="#" data-sub="vacancies">Вакансии</a>
+    <a href="#" data-sub="certificates">Сертификаты</a>
+    <a href="#" data-sub="guarantee">Гарантия</a>
+  </aside>
+  <div class="content" id="subContent"></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15L9 3L15 15" stroke="#161412" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10.5H12.5" stroke="#161412" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <span class="footer-brand-text">STEEL STYLE</span>
+        </div>
+        <p class="footer-about">Производство металлических дверей с 2010 года. Стандартные и элитные модели, доставка по всей России.</p>
+      </div>
+      <div><h4 class="footer-col-title">Продукция</h4><div class="footer-links"><a href="/catalog?series=standart">Стандартные</a><a href="/catalog?series=mechta">Элитные</a><a href="/painting">Покраска</a></div></div>
+      <div><h4 class="footer-col-title">Компания</h4><div class="footer-links"><a href="/about">О нас</a><a href="/dealers">Дилерам</a><a href="/contacts">Контакты</a></div></div>
+      <div><h4 class="footer-col-title">Контакты</h4><div class="footer-links"><a href="tel:88362335341">8 (8362) 33-53-41</a><a href="mailto:st.style@bk.ru">st.style@bk.ru</a></div></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 ООО ПКФ «Стальной стиль»</span><div class="footer-social"><a href="#">VKontakte</a><a href="#">Telegram</a></div></div>
+  </div>
+</footer>
+
+<script>
+var st=null;window.addEventListener('scroll',function(){if(st)return;st=requestAnimationFrame(function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);st=null})});
+var h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu'),c=document.getElementById('mobileClose');
+if(h&&m&&c){h.addEventListener('click',function(){h.classList.toggle('active');m.classList.toggle('open')});c.addEventListener('click',function(){h.classList.remove('active');m.classList.remove('open')});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){h.classList.remove('active');m.classList.remove('open')})})}
+
+var subs = {
+  about: '<h2>О компании <em>Стальной Стиль</em></h2><p>ООО ПКФ «Стальной стиль» — это собственное производство металлических дверей, основанное в 2010 году в городе Йошкар-Ола. За 15 лет работы мы зарекомендовали себя как надёжный производитель, выпускающий более 4 000 дверей ежемесячно.</p><p>Наша продукция включает стандартные и элитные модели, технические двери, усиленные взломостойкие конструкции, а также двери нестандартных размеров. Работаем с оптовыми клиентами по всей России и СНГ.</p><p>Главные принципы компании — контроль качества на всех этапах производства, использование качественных материалов (металл 1.0–1.2 мм, минеральная вата, замки Гардиан) и соблюдение сроков отгрузки.</p>',
+  production: '<h2>Наше <em>производство</em></h2><p>Производственный комплекс ООО ПКФ «Стальной стиль» оснащён современным оборудованием для изготовления металлических дверей любой сложности. Собственная покрасочная линия позволяет наносить порошковое покрытие более 28 цветов и текстур.</p><p>Мы изготавливаем двери серий «Стандарт» (экономичные и стандартные модели с терморазрывом) и «Мечта» (элитные двери с дизайнерскими МДФ-панелями 16 мм, усиленной конструкцией).</p><p>Каждая партия проходит контроль геометрии, качества сварных швов, работы замков и покрытия. Максимальная мощность — до 200 дверей в день.</p><div class="production-gallery"><img src="/images/production-1.jpg" alt="Производство" loading="lazy"><img src="/images/production-2.jpg" alt="Производство" loading="lazy"><img src="/images/production-3.jpg" alt="Производство" loading="lazy"></div>',
+  vacancies: '<h2><em>Вакансии</em></h2><p>Мы постоянно развиваемся и приглашаем в команду профессионалов. Актуальные вакансии:</p><ul><li><strong>Сварщик-аргонщик</strong> — опыт работы от 3 лет, знание технологии сварки металла 1.0–1.5 мм</li><li><strong>Маляр-порошковщик</strong> — опыт работы с порошковыми красками</li><li><strong>Комплектовщик фурнитуры</strong> — знание замков и дверной фурнитуры</li><li><strong>Менеджер оптовых продаж</strong> — работа с корпоративными клиентами</li></ul><p>По вопросам трудоустройства звоните: <a href="tel:88362335341" style="color:var(--accent);font-weight:600;text-decoration:none">8 (8362) 33-53-41</a></p>',
+  certificates: '<h2><em>Сертификаты</em></h2><p>Продукция ООО ПКФ «Стальной стиль» соответствует требованиям технических регламентов и стандартам качества. Вся продукция имеет необходимые сертификаты соответствия.</p><p>Мы используем сертифицированные материалы: стальной лист, утеплители (минеральная вата, пенопласт), замки Гардиан (сувальдные и цилиндровые), лакокрасочные материалы ведущих производителей.</p><p>При необходимости предоставляем копии сертификатов по запросу.</p><div class="certificate-frame"><img src="/images/sertificat.jpg" alt="Сертификат соответствия"></div>',
+  guarantee: '<h2>Гарантия</h2><p>Блоки дверные изготавливаются в соответствии с требованиями ТУ 5262-001-24987666-2014.</p><p>Срок гарантии устанавливается 12 месяцев с момента начала монтажа, но не более 18 месяцев со дня отгрузки.</p><p>Изготовитель гарантирует функционирование двери при условии выполнения правил, приведенных в инструкции по эксплуатации двери.</p><ul><li>При механических повреждениях двери, замков и комплектующих гарантийное обслуживание не производится.</li><li>Претензии по некомплектности и качеству внешнего вида после установки двери и подписания заказчиком выполнения заказа изготовителем не принимаются.</li><li>Изготовитель не гарантирует абсолютной стойкости изделия к умышленным механическим воздействиям.</li><li>Изменения плоскости полотна двери вследствие неправильной установки, транспортировки или хранения не является гарантийным случаем.</li><li>Гарантия не распространяется в случае нарушения инструкции по монтажу и эксплуатации двери, нарушения условий транспортировки и хранения.</li><li>Замена декоративных панелей, замков, фурнитуры не является причиной для полного возврата двери Поставщику.</li><li>Гарантийные обязательства действительны для дверей габаритные размеры полотен, которых не превышают по ширине 1000 мм.</li></ul><p>ООО ПКФ "Стальной стиль" постоянно расширяет модельный ряд и повышает качество дверей, вследствие чего поставляемые заказчику двери могут отличаться от выставочных образцов дверей в торговой сети (по форме, оттенкам фурнитуры, порошкового покрытия), что не является нарушением прав Потребителя.</p>'
+};
+
+function showSub(name) {
+  document.getElementById('subContent').innerHTML = subs[name] || subs.about;
+  document.querySelectorAll('#subMenu a').forEach(function(a) { a.classList.remove('active'); });
+  var el = document.querySelector('#subMenu a[data-sub="' + name + '"]');
+  if (el) el.classList.add('active');
+}
+showSub('about');
+document.querySelectorAll('#subMenu a').forEach(function(a) {
+  a.addEventListener('click', function(e) { e.preventDefault(); showSub(this.getAttribute('data-sub')); });
+});
+</script>
+</body>
+</html>
+
+

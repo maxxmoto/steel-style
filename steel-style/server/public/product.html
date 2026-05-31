@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дверь — Стальной Стиль</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15L9 3L15 15" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10.5H12.5" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+    STEEL STYLE
+  </a>
+  <div class="nav-links">
+    <a href="/catalog">Каталог</a>
+    <a href="/about">О компании</a>
+    <a href="/painting">Покраска</a>
+    <a href="/dealers">Дилерам</a>
+    <a href="/contacts">Контакты</a>
+  </div>
+  <a href="/contacts" class="nav-cta">Связаться</a>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" id="mobileClose">&times;</button>
+  <a href="/catalog">Каталог</a>
+  <a href="/about">О компании</a>
+  <a href="/painting">Покраска</a>
+  <a href="/dealers">Дилерам</a>
+  <a href="/contacts">Контакты</a>
+  <a href="/contacts" class="mobile-cta">Связаться</a>
+</div>
+
+<div id="productContent"></div>
+
+<div class="modal-overlay" id="orderModal" style="display:none" onclick="if(event.target===this)closeModal()">
+  <div class="modal-content" style="max-width:500px" onclick="event.stopPropagation()">
+    <div style="padding:32px 34px 24px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h3 class="f-heading" style="font-size:16px;font-weight:700;letter-spacing:0.02em">Заказать</h3>
+        <button class="modal-close" onclick="closeModal()">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2L12 12M12 2L2 12" stroke="#161412" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <p id="modalProduct" style="font-size:13px;color:var(--muted);margin-bottom:20px;padding:8px 14px;background:var(--bg);border-radius:6px"></p>
+      <form id="orderForm">
+        <input type="hidden" name="product" id="productField">
+        <div class="form-group" style="margin-bottom:18px">
+          <label class="form-label" style="color:var(--muted);font-size:10px">Имя</label>
+          <input type="text" name="name" required style="width:100%;padding:10px 0;border:none;border-bottom:1.5px solid var(--border);font-family:var(--font-body);font-size:14px;color:var(--dark);background:transparent;outline:none" placeholder="Иван Петров">
+        </div>
+        <div class="form-group" style="margin-bottom:18px">
+          <label class="form-label" style="color:var(--muted);font-size:10px">Телефон</label>
+          <input type="tel" name="phone" required style="width:100%;padding:10px 0;border:none;border-bottom:1.5px solid var(--border);font-family:var(--font-body);font-size:14px;color:var(--dark);background:transparent;outline:none" placeholder="+7 ...">
+        </div>
+        <div class="form-group" style="margin-bottom:18px">
+          <label class="form-label" style="color:var(--muted);font-size:10px">Комментарий</label>
+          <textarea name="msg" rows="2" style="width:100%;padding:10px 0;border:none;border-bottom:1.5px solid var(--border);font-family:var(--font-body);font-size:14px;color:var(--dark);background:transparent;outline:none;resize:none" placeholder="Сроки, количество..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="footer-brand-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15L9 3L15 15" stroke="#161412" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 10.5H12.5" stroke="#161412" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <span class="footer-brand-text">STEEL STYLE</span>
+        </div>
+        <p class="footer-about">Производство металлических дверей с 2010 года. Стандартные и элитные модели, доставка по всей России.</p>
+      </div>
+      <div><h4 class="footer-col-title">Продукция</h4><div class="footer-links"><a href="/catalog?series=standart">Стандартные</a><a href="/catalog?series=mechta">Элитные</a><a href="/painting">Покраска</a></div></div>
+      <div><h4 class="footer-col-title">Компания</h4><div class="footer-links"><a href="/about">О нас</a><a href="/dealers">Дилерам</a><a href="/contacts">Контакты</a></div></div>
+      <div><h4 class="footer-col-title">Контакты</h4><div class="footer-links"><a href="tel:88362335341">8 (8362) 33-53-41</a><a href="mailto:st.style@bk.ru">st.style@bk.ru</a></div></div>
+    </div>
+    <div class="footer-bottom"><span class="footer-copy">© 2025 ООО ПКФ «Стальной стиль»</span><div class="footer-social"><a href="#">VKontakte</a><a href="#">Telegram</a></div></div>
+  </div>
+</footer>
+
+<script>
+var currentProductName = '';
+
+var st=null;window.addEventListener('scroll',function(){if(st)return;st=requestAnimationFrame(function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);st=null})});
+var h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu'),c=document.getElementById('mobileClose');
+if(h&&m&&c){h.addEventListener('click',function(){h.classList.toggle('active');m.classList.toggle('open')});c.addEventListener('click',function(){h.classList.remove('active');m.classList.remove('open')});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){h.classList.remove('active');m.classList.remove('open')})})}
+
+function openModal(productName) {
+  currentProductName = productName;
+  document.getElementById('productField').value = productName;
+  document.getElementById('modalProduct').textContent = productName ? 'Дверь: ' + productName : 'Заявка на двери';
+  document.getElementById('orderModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('orderModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var f = e.target;
+  var data = JSON.stringify({ name: f.name.value, phone: f.phone.value, msg: f.msg.value, product: currentProductName });
+  fetch('/api/contact', { method: 'POST', headers: {'Content-Type':'application/json'}, body: data })
+    .then(function(r) { return r.json(); })
+    .then(function(resp) {
+      if (resp.success) {
+        document.querySelector('#orderModal .modal-content').innerHTML = '<div style="padding:60px 34px;text-align:center"><p style="font-size:18px;margin-bottom:8px">✓</p><p style="font-size:15px;font-weight:500">Спасибо! Мы свяжемся с вами.</p><button class="btn btn-sm btn-outline" style="margin-top:20px" onclick="closeModal()">Закрыть</button></div>';
+        setTimeout(closeModal, 3000);
+      }
+    });
+});
+
+function loadProduct() {
+  var id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { document.getElementById('productContent').innerHTML = '<div class="container" style="padding:120px 5%;text-align:center"><p>Товар не выбран. <a href="/catalog" style="color:var(--dark);text-decoration:underline">Вернуться в каталог</a></p></div>'; return; }
+  fetch('/api/products/' + id).then(function(r) { return r.json(); }).then(function(p) {
+    var specs = p.specs || {};
+    var specHtml = '<ul class="specs-list">' + Object.entries(specs).map(function(s) { return '<li><span>' + s[0] + '</span><span>' + s[1] + '</span></li>'; }).join('') + '</ul>';
+    var seriesLabel = p.series === 'mechta' ? 'Серия Мечта' : 'Серия Стандарт';
+    var images = p.images || [''];
+    var carouselId = 'carousel-' + p.id;
+    var dotsHtml = images.length > 1 ? '<div class="carousel-dots" id="' + carouselId + '-dots">' + images.map(function(f, i) { return '<span class="carousel-dot' + (i === 0 ? ' active' : '') + '" data-index="' + i + '"></span>'; }).join('') + '</div>' : '';
+    var arrowsHtml = images.length > 1 ? '<button class="carousel-arrow carousel-prev" onclick="switchCarousel(\'' + carouselId + '\',-1)">◀</button><button class="carousel-arrow carousel-next" onclick="switchCarousel(\'' + carouselId + '\',1)">▶</button>' : '';
+    window._carouselData = window._carouselData || {};
+    window._carouselData[carouselId] = { images: images, index: 0 };
+    document.getElementById('productContent').innerHTML =
+      '<div class="page-header"><div class="container"><div class="breadcrumbs"><a href="/">Главная</a><span class="sep">/</span><a href="/catalog">Каталог</a><span class="sep">/</span><span>' + p.name + '</span></div></div></div>'
+      + '<div class="product-detail">'
+      + '<div class="product-detail-image" id="' + carouselId + '">'
+      + '<div class="carousel-main">' + arrowsHtml + '<img id="' + carouselId + '-main" src="/images/' + images[0] + '" alt="' + p.name + '" class="carousel-main-img"></div>'
+      + dotsHtml
+      + '</div>'
+      + '<div class="product-detail-info"><span class="series-tag">' + seriesLabel + '</span>'
+      + '<h1>' + p.name + '</h1>'
+      + '<p class="desc">' + p.desc + '</p>'
+      + '<h3 class="f-heading" style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Характеристики</h3>'
+      + specHtml
+      + '<div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">'
+      + '<button class="btn btn-primary btn-sm" onclick="openModal(\'' + p.name.replace(/'/g, "\\'") + '\')">Заказать</button>'
+      + '<a href="/catalog" class="btn btn-outline btn-sm">← Назад в каталог</a>'
+      + '</div></div></div>';
+    var carouselMain = document.querySelector('#' + carouselId + ' .carousel-main');
+    if (carouselMain) {
+      initCarouselTouch(carouselMain, carouselId);
+    }
+  }).catch(function() {
+    document.getElementById('productContent').innerHTML = '<div class="container" style="padding:120px 5%;text-align:center"><p>Товар не найден. <a href="/catalog" style="color:var(--dark);text-decoration:underline">Вернуться в каталог</a></p></div>';
+  });
+}
+
+function initCarouselTouch(el, id) {
+  var x0 = 0;
+  el.addEventListener('touchstart', function(e) { x0 = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) { switchCarousel(id, dx > 0 ? -1 : 1); }
+  }, {passive:true});
+}
+
+function switchCarousel(id, dir) {
+  var data = window._carouselData && window._carouselData[id];
+  if (!data || !data.images.length) return;
+  data.index = (data.index + dir + data.images.length) % data.images.length;
+  var main = document.getElementById(id + '-main');
+  var dots = document.querySelectorAll('#' + id + '-dots .carousel-dot');
+  if (!main) return;
+  main.classList.add('fade-out');
+  var self = this;
+  setTimeout(function() {
+    main.src = '/images/' + data.images[data.index];
+    main.classList.remove('fade-out');
+  }, 200);
+  if (dots.length) {
+    dots.forEach(function(d) { d.classList.remove('active'); });
+    dots[data.index].classList.add('active');
+  }
+}
+loadProduct();
+</script>
+</body>
+</html>
+
+
+
