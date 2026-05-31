@@ -245,4 +245,5 @@ if __name__ == '__main__':
     print('\n  Страницы: /catalog /about /painting /pvkh-plenki /naruzhnaya-otdelka /dveri-na-zakaz /dealers /contacts /product')
     print('  Старые URL: /garantiya /vidy-pokraski /proizvodstvo /vakansii /sertifikat /o-kompanii /dileram /kontakty /vnutrennyaya-otdelka')
     print('\n  Нажмите Ctrl+C для остановки\n')
-    app.run(host='0.0.0.0', port=3000, debug=True)
+    port = int(os.environ.get('PORT', 3000))
+    app.run(host='0.0.0.0', port=port, debug=True)
